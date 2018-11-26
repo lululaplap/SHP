@@ -1,2 +1,9 @@
-D = importdata('../Data/data1.txt');
-data = D.data(:,1:6);
+D = importdata('C:\Users\Lewis\OneDrive - University of Edinburgh/data14.txt');
+data = D.data(:,6);
+trigger = D.data(:,4);
+N = size(data)/256;
+n = 2;
+Wn=0.07;
+[b,a] = butter(n, Wn,'low');
+out = (filter(b,a,(data)));
+trig = (filter(b,a,(trigger)));
