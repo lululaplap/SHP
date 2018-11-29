@@ -3,7 +3,7 @@ figure
 %ylim([-0.5,1])
 for i =1:30000-1
     i
-    if dataS(i)>0 & trigS(i)>0 & diff(i)>-100
+    if dataS(i)>0 & trigS(i)>0 & diff(i)>0
     signal = out(256*i:256+i*256);%.',0.9,15);
     trigSig = trig(256*i:256+i*256);
     plot(signal)

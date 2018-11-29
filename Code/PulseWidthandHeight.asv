@@ -1,5 +1,5 @@
 % p=2736
-frac=0.6; del=15;
+frac=0.9; del=23;
 figure;
 tol = 2
 heights = zeros([9999,1]);
@@ -27,25 +27,26 @@ plot(1:0.1:256,dist);
 title("Pulse Width Spectrum")
 xlabel("Time(samples)")
 ylabel("Normalised Count")
-str = ['{\mu} = ',num2str(pd.mu),newline,'{\sigma} = ',num2str(pd.sigma)]
-annotation('textbox',[0.6,.5,0.15,0.15],'String',str,'FontSize',30,'BackgroundColor',[210/256,238/256,250/256])
+Sa=10.24
+str = ['{\mu} = ',num2str(pd.mu/Sa),'ns',newline,'{\sigma} = ',num2str(pd.sigma/Sa),'ns']
+annotation('textbox',[0.6,.5,0.16,0.15],'String',str,'FontSize',30,'BackgroundColor',[210/256,238/256,250/256])
 xlim([0,256]);
 figure;
 histogram(heights,100,'Normalization','pdf')
 hold on
-pd = fitdist(heights,'Kernel','BandWidth',0.02)
-x=0:0.01:1;
+pd = fitdist(heights,'Kernel','BandWidth',0.01)
+x=0:0.001:1;
 y=pdf(pd,x)
 plot(x,y);
 hold on
-f = fit(x(x>0.1 & x<0.28).',y(x>0.1 & x<0.28).','gauss1')
+f = fit(x(x>0.1 & x<0.26).',y(x>0.1 & x<0.26).','gauss1')
 plot(f,'--k')
 title("Pulse Height Spectrum")
 xlabel("Pulse Height(-V)")
 ylabel("Normalised Count")
 xlim([0,1])
 legend('Height spectrum','Kernel Fit','Gaussian Fit');
-str = ['{\mu} = ',num2str(f.b1),newline,'{\sigma} = ',num2str(f.c1)]
-annotation('textbox',[0.6,.5,0.15,0.15],'String',str,'FontSize',30,'BackgroundColor',[210/256,238/256,250/256])
+str = ['{\mu} = ',num2str(round(f.b1*10^3,4)),'mV',newline,'{\sigma} = ',num2str(round(f.c1*10^3,4)),'mV']
+annotation('textbox',[0.6,.5,0.16,0.15],'String',str,'FontSize',30,'BackgroundColor',[210/256,238/256,250/256])
 
 

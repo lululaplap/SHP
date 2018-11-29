@@ -5,10 +5,10 @@ dataS = getStarts(out,1,N,del,frac);
 diff=dataS-trigS;
 x=diff(dataS>0 & trigS>0)
 try
-    pd = fitdist(diff(dataS>0 & trigS>0 & diff>40 & diff<60),'Normal');
+    pd = fitdist(diff(dataS>0 & trigS>0 & diff>0),'Normal');
     size(diff(dataS>0 & trigS>0 & diff>0 & diff<9000))
     histogram(diff(dataS>0 & trigS>0))
-    s = pd.sigma
+    s = pd.sigma;
     
 catch
     s = 1000

@@ -21,7 +21,7 @@ for i=1:N-1
 %             end
            
         else
-            start(i) = 0;
+            start(i) = NaN;
         end
 %                     pause(0.5)
 
@@ -32,7 +32,7 @@ for i=1:N-1
         if size(W)==1
             start(i) = I;
         else
-            start(i) = 0;
+            start(i) = NaN;
         end
     end
     
